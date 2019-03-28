@@ -519,14 +519,14 @@ public class MainGromit extends NarwhalRobot{
 		listenerRight.addButtonDownListener("StartCompressor", () ->
 		{
 			compressor.start();
-			Log.info("MainGuido", "Starting Compressor");
+			Log.info("MainGromit", "Starting Compressor");
 		});
 
 		listenerRight.nameControl(new Button(12), "StopCompressor");
 		listenerRight.addButtonDownListener("StopCompressor", () ->
 		{
 			compressor.stop();
-			Log.info("MainGuido", "Stopping Compressor");
+			Log.info("MainGromit", "Stopping Compressor");
 		});
 
 		// MANUAL CONTROLS AND OVERRIDES
