@@ -57,9 +57,9 @@ public class DriveCalibrationUtility {
             }
         });
 
-        NarwhalDashboard.put("vision_p", visionPID.kP);
-		NarwhalDashboard.put("vision_i", visionPID.kI);
-        NarwhalDashboard.put("vision_d", visionPID.kD);
+        //NarwhalDashboard.put("vision_p", visionPID.kP);
+		//NarwhalDashboard.put("vision_i", visionPID.kI);
+        //NarwhalDashboard.put("vision_d", visionPID.kD);
         
         NarwhalDashboard.addNumDataListener("visionPID", (double constants[]) ->{
             visionPID.kP = constants[0];
@@ -168,7 +168,7 @@ public class DriveCalibrationUtility {
 
         double averagePosition = (drive.getLeftMotors().getSelectedSensorPosition() + drive.getRightMotors().getSelectedSensorPosition()) / 2;
 
-        return 100 * 4096 / averagePosition;
+        return 100 * averagePosition/4096;
     }
 
     public double getLeftKf() {
