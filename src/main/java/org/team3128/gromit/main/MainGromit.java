@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import org.team3128.common.hardware.limelight.StreamMode;
 import org.team3128.common.hardware.misc.Piston;
 import org.team3128.common.listener.controltypes.Button;
 import org.team3128.common.narwhaldashboard.NarwhalDashboard;
@@ -47,7 +48,7 @@ public class MainGromit extends MainDeepSpaceRobot {
         climbPiston = new Piston(1, 6);
         climbPiston.setPistonOff();
 
-        demogorgonPiston = new Piston(7, 0);
+        demogorgonPiston = new Piston(0, 7);
 
         placeholder = new Piston(2, 5);
         placeholder.setPistonOn();
@@ -63,6 +64,12 @@ public class MainGromit extends MainDeepSpaceRobot {
         
         cargoBumperSwitch = new DigitalInput(1);
 
+        bottomLLHeight = 6.15 * Length.in;
+        bottomLLAngle =  38.0 * Angle.DEGREES;
+
+        topLLHeight =      43 * Length.in;
+        topLLAngle =    -12.0 * Angle.DEGREES;
+
         // Construct and Configure Drivetrain
 		leftDriveLeader = new TalonSRX(10);
 		leftDriveFollower = new VictorSPX(11);
@@ -70,6 +77,8 @@ public class MainGromit extends MainDeepSpaceRobot {
 		rightDriveFollower = new VictorSPX(16);
         
         super.constructHardware();
+
+        topLimelight.setStreamMode(StreamMode.DRIVER_CAMERA);
 
         leftDriveLeader.setInverted(InvertType.None);
         leftDriveFollower.setInverted(InvertType.FollowMaster);

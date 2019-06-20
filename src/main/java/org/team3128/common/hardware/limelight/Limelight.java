@@ -19,21 +19,26 @@ public class Limelight
     public double targetWidth;
     public double centerDist;
 
-    public NetworkTable limelightTable, calcValsTable;
-    public NetworkTableEntry nd, nd0, nd1, ntheta, ntheta0, ntheta1, ndeltax, ndeltay, camtran;
+    public double frontDistance;
+
+    public NetworkTable limelightTable;
     
     /**
      * 
      * @param centerDist - The vertical distance between the center of the robot's wheelbase and the camera
      * @param cameraAngle - The vertical angle of the limelight
      * @param cameraHeight - The height off of the ground of the limelight
+     * @param frontDistance - The distance between the front of the robot and the Limelight
      * @param targetWidth - The width of the target
      */
-    public Limelight(double centerDist, double cameraAngle, double cameraHeight, double targetWidth) {
-        this.centerDist = centerDist;
+    public Limelight(String hostname, double cameraAngle, double cameraHeight, double frontDistance, double targetWidth) {
+        this.hostname = hostname;
+
         this.cameraAngle = cameraAngle;
         this.cameraHeight = cameraHeight;
-        //this.targetHeight = targetHeight;
+
+        this.frontDistance = frontDistance;
+
         this.targetWidth = targetWidth;
 
         limelightTable = NetworkTableInstance.getDefault().getTable("limelight");
@@ -103,8 +108,8 @@ public class Limelight
         return calculateDistanceFromTY(getValue("ty", n), targetHeight);
     }
 
-    public double calculateDistanceFromTY(double ty, double targetHeight) {
-        return  (targetHeight - cameraHeight) / RobotMath.tan(ty + cameraAngle);
+    public double calculateYPrimeFromTY(double ty, double targetHeight) {
+        return (targetHeight - cameraHeight) / RobotMath.tan(ty + cameraAngle) - frontDistance;
     }
     
     public CalculatedData doMath(LimelightData inputData, double targetHeight) {

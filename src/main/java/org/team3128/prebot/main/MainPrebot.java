@@ -69,7 +69,11 @@ public class MainPrebot extends NarwhalRobot {
     public CmdAutoAim alignCommand;
     private DriveCommandRunning driveCmdRunning;
 
+<<<<<<< HEAD
     public Limelight limelight = new Limelight(0 * Length.in, 26 * Angle.DEGREES, 6.15 * Length.in, 14.5 * Length.in);
+=======
+    public Limelight limelight = new Limelight("limelight", 26 * Angle.DEGREES, 6.15 * Length.in, 0 * Length.in, 14.5 * Length.in);
+>>>>>>> upstream/master
 	@Override
 	protected void constructHardware()
 	{
