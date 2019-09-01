@@ -390,7 +390,10 @@ public class MainDeepSpaceRobot extends NarwhalRobot{
 		});
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> upstream/master
 		NarwhalDashboard.addButton("lift_up", (boolean down) -> {
 			if (down) {
 				lift.powerControl(0.8);

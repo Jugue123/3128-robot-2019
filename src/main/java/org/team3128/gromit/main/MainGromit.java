@@ -147,6 +147,7 @@ public class MainGromit extends MainDeepSpaceRobot {
         limelight.driverMode(2);
         limelight.turnOffLED();
 
+<<<<<<< HEAD
 		// Scoring Structure Controls
 		listenerRight.nameControl(new Button(8), "SelectCargoShip");
 		listenerRight.addButtonDownListener("SelectCargoShip", () -> {
@@ -236,6 +237,8 @@ public class MainGromit extends MainDeepSpaceRobot {
     protected void setupListeners() {
         super.setupListeners();
 
+=======
+>>>>>>> upstream/master
         // listenerLeft.nameControl(new Button(9), "ClimbPistonExtend");
         // listenerLeft.addButtonDownListener("ClimbPistonExtend", () -> {
         //     climbPiston.setPistonOn();
