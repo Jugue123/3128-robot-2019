@@ -79,6 +79,8 @@ public class MainGromit extends MainDeepSpaceRobot {
         super.constructHardware();
 
         topLimelight.setStreamMode(StreamMode.DRIVER_CAMERA);
+        bottomLimelight.setStreamMode(StreamMode.DRIVER_CAMERA);
+
 
         leftDriveLeader.setInverted(InvertType.None);
         leftDriveFollower.setInverted(InvertType.FollowMaster);

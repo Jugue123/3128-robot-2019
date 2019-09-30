@@ -1,11 +1,11 @@
-package org.team3128.prebot.main;
+package org.team3128.athos.main;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-import org.team3128.prebot.autonomous.*;
-import org.team3128.prebot.util.PrebotDeepSpaceConstants;
+import org.team3128.athos.autonomous.*;
+import org.team3128.athos.util.PrebotDeepSpaceConstants;
 
 import org.team3128.common.NarwhalRobot;
 import org.team3128.common.drive.DriveCommandRunning;
@@ -37,7 +37,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
-public class MainPrebot extends NarwhalRobot {
+public class MainAthos extends NarwhalRobot {
     public TalonSRX rightDriveFront, rightDriveMiddle, rightDriveBack;
     public TalonSRX leftDriveFront, leftDriveMiddle, leftDriveBack;
 
@@ -243,6 +243,6 @@ public class MainPrebot extends NarwhalRobot {
     }
 
     public static void main(String... args) {
-        RobotBase.startRobot(MainPrebot::new);
+        RobotBase.startRobot(MainAthos::new);
     }
 }
