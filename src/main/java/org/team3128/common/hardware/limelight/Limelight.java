@@ -1,19 +1,34 @@
 package org.team3128.common.hardware.limelight;
 
+import java.util.Arrays;
 import edu.wpi.first.networktables.NetworkTable;
 //import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 //import edu.wpi.first.networktables.TableEntryListener;
 
-import org.team3128.common.util.RobotMath;
+import org.team3128.common.utility.RobotMath;
 
 /**
+<<<<<<< HEAD
+=======
+ * Software wrapper to obtain data from and send data to the physical Limelight.
+ * 
+ * LIMELIGHT CONVENTIONS: - When the target is right of the vertical centerline,
+ * tx is positive. - When the target is above the horizontal centerline, ty is
+ * positive.
+ * 
+>>>>>>> upstream/code-overhaul
  * 
  * @author Adham Elarabawy, Mason Holst, Jude Lifset
  *
  */
+<<<<<<< HEAD
 public class Limelight
 {    
+=======
+public class Limelight {
+    public String hostname;
+>>>>>>> upstream/code-overhaul
     public double cameraAngle;
     public double cameraHeight;
     //public double targetHeight;
@@ -26,13 +41,22 @@ public class Limelight
 
     /**
      * 
+<<<<<<< HEAD
      * @param centerDist - The vertical distance between the center of the robot's wheelbase and the camera
      * @param cameraAngle - The vertical angle of the limelight
      * @param cameraHeight - The height off of the ground of the limelight
      * @param frontDistance - The distance between the front of the robot and the Limelight
      * @param targetWidth - The width of the target
+=======
+     * @param cameraAngle   - The vertical angle of the limelight
+     * @param cameraHeight  - The height off of the ground of the limelight
+     * @param frontDistance - The distance between the front of the robot and the
+     *                      Limelight
+     * @param targetWidth   - The width of the target
+>>>>>>> upstream/code-overhaul
      */
-    public Limelight(String hostname, double cameraAngle, double cameraHeight, double frontDistance, double targetWidth) {
+    public Limelight(String hostname, double cameraAngle, double cameraHeight, double frontDistance,
+            double targetWidth) {
         this.hostname = hostname;
 
         this.cameraAngle = cameraAngle;
@@ -55,7 +79,19 @@ public class Limelight
         ndeltay = calcValsTable.getEntry("deltay");
     }
 
+<<<<<<< HEAD
     public double getValue(String key, int numSamples){
+=======
+    /**
+     * Gets the average value of the data value in a certain key output by the
+     * Limelight.
+     * 
+     * @param key        - the LimelightKey corresponding to the desired value.
+     * @param numSamples - how many samples of the value to average out.
+     * @return
+     */
+    public double getValue(LimelightKey key, int numSamples) {
+>>>>>>> upstream/code-overhaul
         double runningTotal = 0;
         int count = 0;
 
@@ -74,9 +110,12 @@ public class Limelight
 
     public LimelightData getValues(int numSamples) {
         LimelightData data = new LimelightData();
-        double runningTotal;
+        // double runningTotal;
+        double[] runningTotal;
         double[] camtranArray;
+        int idx;
         int index = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
         for(String valueKey : LimelightConstants.valueKeys) {
             runningTotal = 0;
@@ -88,32 +127,61 @@ public class Limelight
             for (String valueKey : LimelightConstants.valueKeys) {
 >>>>>>> upstream/master
                 runningTotal += limelightTable.getEntry(valueKey).getDouble(0.0);
+=======
+        // runningTotal = 0;
+        runningTotal = new double[9];
 
+        for (int a = 0; a < numSamples; a++) {
+
+            Arrays.fill(runningTotal, 0.0);
+            idx = 0;
+            // for (String valueKey : LimelightConstants.valueKeys) {
+
+            // }
+>>>>>>> upstream/code-overhaul
+
+            for (String valueKey : LimelightConstants.valueKeys) {
+                runningTotal[idx] += limelightTable.getEntry(valueKey).getDouble(0.0);
+                idx++;
             }
         }
+        idx = 0;
         for (String valueKey : LimelightConstants.valueKeys) {
-            data.set(valueKey, runningTotal / numSamples);
+            data.set(valueKey, runningTotal[idx] / numSamples);
+            idx++;
         }
 
+<<<<<<< HEAD
         data.set("tx", -1 * data.tx());
         //load the camtranArray
+=======
+        // load the camtranArray
+>>>>>>> upstream/code-overhaul
         camtranArray = limelightTable.getEntry("camtran").getDoubleArray(new double[6]);
-        //add each element in the array to the updated values for however many times numSamples dictates(minus 1 because the array is initially loaded in with values)
-        for(int a = 0; a < numSamples - 1; a++){
-            for(int b = 0; b < camtranArray.length; b++){
+        // add each element in the array to the updated values for however many times
+        // numSamples dictates(minus 1 because the array is initially loaded in with
+        // values)
+        for (int a = 0; a < numSamples - 1; a++) {
+            for (int b = 0; b < camtranArray.length; b++) {
                 camtranArray[b] += limelightTable.getEntry("camtran").getDoubleArray(new double[6])[b];
             }
         }
-        for(String valueKey : LimelightConstants.valueKeysPnP) {
+        for (String valueKey : LimelightConstants.valueKeysPnP) {
             data.set(valueKey, camtranArray[index] / numSamples);
             index++;
         }
-        
+
         return data;
     }
 
+<<<<<<< HEAD
     public double getApproximateDistance(double targetHeight, int n) {
         if (!hasValidTarget()) return -1;
+=======
+    public double getYPrime(double targetHeight, int n) {
+        if (!hasValidTarget())
+            return -1;
+>>>>>>> upstream/code-overhaul
 
         return calculateDistanceFromTY(getValue("ty", n), targetHeight);
     }

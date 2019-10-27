@@ -1,14 +1,16 @@
 package org.team3128.common.hardware.limelight;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class LimelightData {
-    private HashMap<String, Double> values;
+    // private HashMap<String, Double> values;
+    private LinkedHashMap<String, Double> values;
     private String csvString;
 
     public LimelightData() {
-        values = new HashMap<String, Double>();
+        // values = new HashMap<String, Double>();
+        values = new LinkedHashMap<String, Double>();
 
         for (String valueKey : LimelightConstants.valueKeys) {
             values.put(valueKey, 0.0);
@@ -26,9 +28,11 @@ public class LimelightData {
     public double ty() {
         return values.get("ty");
     }
+
     public double tv() {
         return values.get("tv");
     }
+
     public double shear() {
         return values.get("ts");
     }
@@ -72,7 +76,7 @@ public class LimelightData {
     public double yaw() {
         return values.get("yaw");
     }
-    
+
     public double roll() {
         return values.get("roll");
     }
@@ -83,7 +87,7 @@ public class LimelightData {
     }
 
     public String toString() {
-        
+
         csvString = "";
 
         for (Map.Entry<String, Double> entry : values.entrySet()) {

@@ -1,15 +1,9 @@
 plugins {
     id "java"
-    id "edu.wpi.first.GradleRIO" version "2019.3.2"
+    id "edu.wpi.first.GradleRIO" version "2019.4.1"
 }
 
-//def ROBOT_MAIN_CLASS = "org.team3128.testbench.main.MainTestBench"
-//def ROBOT_MAIN_CLASS = "org.team3128.prebot.main.MainPrebot"
-//def ROBOT_MAIN_CLASS = "org.team3128.gromit.main.MainGromit"
-//def ROBOT_MAIN_CLASS = "org.team3128.gromit.main.MainWallace"
-//def ROBOT_MAIN_CLASS = "org.team3128.aramis.main.MainAthos"
-def ROBOT_MAIN_CLASS = "org.team3128.aramis.main.MainAramis"
-//def ROBOT_MAIN_CLASS = "org.team3128.aramis.main.MainPorthos"
+def ROBOT_MAIN_CLASS = "org.team3128.athos.main.MainAthos"
 
 
 // Define my targets (RoboRIO) and artifacts (deployable files)
@@ -65,6 +59,8 @@ dependencies {
     compile files('lib/minlog-info-1.2.jar')
     compile files('lib/objenesis-2.4.jar')
     compile files('lib/reflectasm-1.09-all.jar')
+
+    compile group: 'org.ejml', name: 'ejml-all', version: '0.38'
 }
 
 // Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')
